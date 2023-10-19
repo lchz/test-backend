@@ -10,6 +10,9 @@ app.use(express.static('dist'))
 
 const chapters = data.chapters
 
+// app.get('*', (req, res) => {
+//   res.send('<div>What the helll?</div>')
+// })
 
 app.get('/', (request, response) => {
   response.send('<h1>Hello Backend</h1>')
@@ -25,7 +28,7 @@ app.get('/api/chapters/:id', (request, response) => {
 
     if (id >= chapters.length || id < 0) {
         console.log('This is undefined')
-      return response.json({error: 'Entry error'})
+      return response.status(400).json({error: 'Entry error'})
     }
 
     const ch = chapters.find(c => c.id === id)
